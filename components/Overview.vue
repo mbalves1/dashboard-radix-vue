@@ -1,14 +1,26 @@
 <template>
-  <div class="flex">
-    <div class="my-8 w-full max-w-2xl mx-auto flex">
-      <div class="flex overflow-x-scroll">
-        <div v-for="(month, mx) in array" :key="mx" class="border w-[300px] p-6 bg-white rounded-xl">
+  <div class="flex flex-col justify-between gap-6">
+    <div class="my-1 w-full  grid grid-cols-3">
+      <div class="flex overflow-x-scroll scrollbar-custom gap-6 col-span-3">
+        <div v-for="(month, mx) in array" :key="mx" class="min-w-[300px] h-80 p-6 bg-white rounded-xl">
           {{ month.name }}
         </div>
       </div>
     </div>
-    <div class="flex flex-col w-full max-w-[400px] bg-red-50">
-      aqui
+    <div class="w-full grid grid-cols-3 gap-6">
+      <div class="col-span-2 bg-white rounded-lg">
+        Aqui
+      </div>
+      <div class="col-span-1 bg-white rounded-lg">
+        <div class="px-4 pt-4 text-lg">Cartões</div>
+        <Separator
+          class="bg-zinc-200 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-[90%] data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-[15px] mx-auto"
+        />
+
+        <div>
+
+        </div>
+      </div>
     </div>
   </div>
 </template>

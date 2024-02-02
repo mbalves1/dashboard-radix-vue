@@ -1,10 +1,11 @@
 <template>
-  <div class="body w-screen flex gap-6 mx-auto">
+  <div class="body w-screen flex gap-6 mx-auto flex-col-reverse sm:flex-row">
     <aside
-      class="h-full transition-width duration-500 ease-in-out"
-      :class="resize ? 'w-[100px]' : 'w-[300px]'"
+      class="sm:h-full transition-width duration-500 ease-in-out h-[100px]"
+      :class="resize ? 'sm:w-[100px]' : 'sm:w-[300px] w-full'"
     >
-      <BarSide></BarSide>
+      <BarSide class="hidden sm:block"></BarSide>
+      <BarSideMobile class="sm:hidden h-full rounded-3xl bg-white"></BarSideMobile>
     </aside>
     <main class="p-6 w-full">
       <HeaderView></HeaderView>
