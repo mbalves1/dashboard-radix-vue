@@ -12,6 +12,9 @@ export const useUserStore = defineStore('user', {
       userList: [] as UserInfo[],
       // for data that is not yet loaded
       user: 'Murilo',
+      config: {
+        resize: true
+      }
     }
   },
   persist: true,

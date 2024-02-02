@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        green:  green,
+        green: 'green',
       },
       keyframes: {
         overlayShow: {

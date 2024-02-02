@@ -9,13 +9,23 @@ export default defineNuxtConfig({
     'nuxt-lucide-icons'
   ],
   components: {
+    // Habilita o auto-importação para os componentes em `./components`
     global: true,
-    dirs: ['~/components']
+    dirs: [
+      {
+        path: './components',
+        // Opcional: especifique extensões de arquivos
+        extensions: ['vue', 'ts']
+      }
+    ]
+  },
+  globalDirectives: {
+    defineEmits: {}
   },
   pinia: {
     storesDirs: ['./stores/**'],
   },
   lucide: {
     namePrefix: 'Icon'
-  }
+  },
 })
