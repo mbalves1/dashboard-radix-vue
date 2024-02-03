@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
     'radix-vue/nuxt',
-    'nuxt-lucide-icons'
+    'nuxt-lucide-icons',
+    '@vee-validate/nuxt',
   ],
   components: {
     // Habilita o auto-importação para os componentes em `./components`
@@ -27,5 +28,8 @@ export default defineNuxtConfig({
   },
   css: [
     '~/assets/style.scss'  
-  ]
+  ],
+  veeValidate: {
+    autoImports: true,
+  }
 })

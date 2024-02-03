@@ -9,7 +9,22 @@
     </div>
     <div class="w-full grid grid-cols-3 gap-6">
       <div class="col-span-2 bg-white rounded-lg">
-        Aqui
+        <Form @submit="onSubmit" ref="refsForms">
+          <div class="flex flex-col">
+            <label for="Nome">Nome</label>
+            <Field name="Nome" id="Nome" type="text" :rules="isRequired" required class="border-2 outline-blue-500"></Field>
+            <ErrorMessage name="Nome" class="text-sm text-red-400 italic"/>
+          </div>
+  
+          <div class="flex flex-col">
+            <label for="email">Email</label>
+            <Field name="email" type="text" class="border focus:border-red-300"></Field>
+            <ErrorMessage name="email" class="text-sm color-red-400 italic"/>
+          </div>
+
+          <button type="submit" class="border p-6 bg-blue-100">Submit</button>
+
+        </Form>
       </div>
       <div class="col-span-1 bg-white rounded-lg">
         <div class="px-4 pt-4 text-lg">Cartões</div>
@@ -18,14 +33,24 @@
         />
 
         <div>
-
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
+const refsForms = ref()
 
+function isRequired(value) {
+  if (value && value.trim()) {
+    return true;
+  }
+  return 'This is required';
+}
+
+async function onSubmit(values) {
+  console.log('aqui')
+}
 const array = [
   { name: 'Janeiro', value: 100},
   { name: 'Fevereiro', value: 100},
