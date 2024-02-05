@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     'radix-vue/nuxt',
     'nuxt-lucide-icons',
     '@vee-validate/nuxt',
+    '@nuxt/test-utils/module'
   ],
   components: {
     // Habilita o auto-importação para os componentes em `./components`
@@ -31,5 +32,5 @@ export default defineNuxtConfig({
   ],
   veeValidate: {
     autoImports: true,
-  }
+  },
 })
