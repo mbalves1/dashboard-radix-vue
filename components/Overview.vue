@@ -38,29 +38,49 @@
     </div>
   </div>
 </template>
-<script setup>
-const refsForms = ref()
+<script setup lang="ts">
+  const { getTransactions } = useTransactions()
+  const refsForms = ref()
 
-function isRequired(value) {
-  if (value && value.trim()) {
-    return true;
+  function isRequired(value: any) {
+    if (value && value.trim()) {
+      return true;
+    }
+    return 'This is required';
   }
-  return 'This is required';
-}
 
-async function onSubmit(values) {
-  console.log('aqui')
-}
-const array = [
-  { name: 'Janeiro', value: 100},
-  { name: 'Fevereiro', value: 100},
-  { name: 'Março', value: 100},
-  { name: 'Abril', value: 100},
-  { name: 'Maio', value: 100},
-  { name: 'Junho', value: 100},
-  { name: 'Julho', value: 100},
-  { name: 'Agosto', value: 100},
-  { name: 'Setembro', value: 100},
-]
+  async function onSubmit(values: any) {
+    console.log('aqui')
+  }
+  const array = [
+    { name: 'Janeiro', value: 100},
+    { name: 'Fevereiro', value: 100},
+    { name: 'Março', value: 100},
+    { name: 'Abril', value: 100},
+    { name: 'Maio', value: 100},
+    { name: 'Junho', value: 100},
+    { name: 'Julho', value: 100},
+    { name: 'Agosto', value: 100},
+    { name: 'Setembro', value: 100},
+  ]
+
+  onMounted(() => {
+    fetchData()
+  })
+
+  const pages = {
+    page: 1,
+    perPage: 1000
+  }
+
+  async function fetchData() {
+    try {
+      const transations = await getTransactions(pages)
+
+      const filteredByMonth = transations
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 </script>

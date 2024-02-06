@@ -1,18 +1,15 @@
 // vitest.config.ts
-import { fileURLToPath } from 'node:url'
-import { defineVitestConfig } from 'nuxt-vitest/config'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
-export default defineVitestConfig({
+export default defineConfig({
+  plugins: [vue()],
   test: {
-    environment: 'nuxt',
-    // you can optionally set nuxt-specific environment options
-    // environmentOptions: {
-    //   nuxt: {
-    //     rootDir: fileURLToPath(new URL('./playground', import.meta.url)),
-    //     overrides: {
-    //       // other nuxt config you want to pass
-    //     }
-    //   }
-    // }
-  }
-})
+    globals: true,
+    environment: 'jsdom',
+    imports: {
+      'store/**': './store/**',
+      'components/**': './components/**',
+    }
+  },
+});

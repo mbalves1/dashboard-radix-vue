@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
-    '@pinia/nuxt',
+    ['@pinia/nuxt',
+      {
+        autoImportsimport: ['defineStore']
+      }
+    ],
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
     'radix-vue/nuxt',
