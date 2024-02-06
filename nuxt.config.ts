@@ -2,12 +2,17 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
-    '@pinia/nuxt',
+    ['@pinia/nuxt',
+      {
+        autoImportsimport: ['defineStore']
+      }
+    ],
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
     'radix-vue/nuxt',
     'nuxt-lucide-icons',
     '@vee-validate/nuxt',
+    '@nuxt/test-utils/module'
   ],
   components: {
     // Habilita o auto-importação para os componentes em `./components`
@@ -31,5 +36,5 @@ export default defineNuxtConfig({
   ],
   veeValidate: {
     autoImports: true,
-  }
+  },
 })
