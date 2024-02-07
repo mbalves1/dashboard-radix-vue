@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     ],
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
     'radix-vue/nuxt',
     'nuxt-lucide-icons',
     '@vee-validate/nuxt',

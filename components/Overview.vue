@@ -35,6 +35,8 @@
         />
 
         <div>
+
+          <Button class="bg-red-400">Aqui</Button>
         </div>
       </div>
     </div>
@@ -77,7 +79,8 @@
 
   async function fetchData() {
     try {
-      const transations = await getTransactions(pages)
+      // const transations = await getTransactions(pages)
+      const transations = [{}]
 
       const filteredByMonth = transations
     } catch (error) {
