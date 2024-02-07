@@ -1,20 +1,17 @@
 <template>
-  <Card>
+  <Card v-if="createAccount">
     <CardHeader class="space-y-1">
       <CardTitle class="text-2xl">
-        Create an account
+        Manager System
       </CardTitle>
       <CardDescription>
         Enter your email below to create your account
       </CardDescription>
     </CardHeader>
     <CardContent class="grid gap-4">
-      <div class="grid grid-cols-2 gap-6">
-        <Button variant="outline">
-          <Github class="mr-2 h-4 w-4" />
-          Github
-        </Button>
-        <Button variant="outline">
+      <div v-if="errorMessages" class="bg-red-200 text-red-500 rounded p-3 border-red-500 text-xs">{{ errorMessages }}</div>
+      <div>
+        <Button class="w-full" variant="outline" @click="signInWithGoogle">
           <svg role="img" viewBox="0 0 24 24" class="mr-2 h-4 w-4">
             <path
               fill="currentColor"
@@ -42,23 +39,123 @@
         <Label for="password">Password</Label>
         <Input id="password" type="password" v-model="form.password" />
       </div>
+      <div class="flex justify-end cursor-pointer" @click="changeView">
+        <p class="text-xs underline">Criar conta</p>
+      </div>
     </CardContent>
     <CardFooter>
-      <Button class="w-full" @click="login">
+      <Button class="w-full" @click="signInWithEmailAndPass">
+        LogIn
+      </Button>
+    </CardFooter>
+  </Card>
+  <Card v-else>
+    <CardHeader class="space-y-1">
+      <CardTitle class="text-2xl">
+        Create account
+      </CardTitle>
+      <CardDescription>
+        Enter your email below to create your account
+      </CardDescription>
+    </CardHeader>
+    <CardContent class="grid gap-4">
+      <div v-if="errorMessages" class="bg-red-200 text-red-500 rounded p-3 border-red-500 text-xs">{{ errorMessages }}</div>
+      <div class="grid gap-2">
+        <Label for="name">Name</Label>
+        <Input id="name" type="name" placeholder="Joe Doe" v-model="form.name" />
+      </div>
+      <div class="grid gap-2">
+        <Label for="phone">Phone</Label>
+        <Input id="phone" type="phone" placeholder="(xx) xxxxx-xxxx" v-model="form.phone" />
+      </div>
+      <div class="grid gap-2">
+        <Label for="email">Email</Label>
+        <Input id="email" type="email" placeholder="m@example.com" v-model="form.email" />
+      </div>
+      <div class="grid gap-2">
+        <Label for="password">Password</Label>
+        <div class="flex items-center m-1">
+          <Input id="password" :type="showPass ? 'password' : 'text'" v-model="form.password" />
+          <Eye v-if="showPass" @click="showPass = !showPass" class="cursor-pointer"></Eye>
+          <EyeOff v-else @click="showPass = !showPass" class="cursor-pointer"></EyeOff>
+        </div>
+      </div>
+      <div class="flex justify-end cursor-pointer" @click="changeView">
+        <p class="text-xs underline">Create account</p>
+      </div>
+    </CardContent>
+    <CardFooter>
+      <Button class="w-full" @click="signInWithEmailAndPass">
         Create account
       </Button>
     </CardFooter>
   </Card>
 </template>
-<script setup>
-import { Github } from 'lucide-vue-next';
+<script setup lang="ts">
+import { Eye, EyeOff } from 'lucide-vue-next';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth
+} from 'firebase/auth'
+
+const createAccount = ref(true)
+const showPass = ref(true)
 
 const form = ref({
+  name: '',
+  phone: '',
   email: '',
   password: ''
 })
 
-function login() {
+const emit = defineEmits(['changeViewEvent'])
+
+const errorMessages = ref()
+
+const {auth} = useFirebaseClient()
+
+function create() {
+  createUserWithEmailAndPassword(auth, form.value.email, form.value.password)
+    .then((user) => {
+      console.log(user.user?.accessToken)
+      navigateTo('/home')
+    })
+    .catch((e) => {
+      console.log(e);
+      navigateTo('/')
+    })
 }
+
+const signInWithEmailAndPass = () => {
+  signInWithEmailAndPassword(auth, form.value.email, form.value.password)
+  .then((user) => {
+      console.log(user.user?.accessToken)
+      navigateTo('/home')
+    })
+    .catch((e) => {
+      errorMessages.value = 'Crendenciais inválidas, tente novamente!'
+      navigateTo('/')
+    })
+}
+
+ const signInWithGoogle = () => {
+   const provider = new GoogleAuthProvider()
+   signInWithPopup(getAuth(), provider)
+    .then((result) => {
+      console.log(result.user)
+      navigateTo('/home')
+    })
+    .catch((error) => {
+
+    })
+ }
+
+ const changeView = () => {
+  emit('changeViewEvent', false)
+  createAccount.value = !createAccount.value
+ }
 
 </script>
