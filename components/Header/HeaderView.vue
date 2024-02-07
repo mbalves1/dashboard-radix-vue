@@ -1,8 +1,7 @@
 <template>
-  <div class="flex justify-between max-w-full">
-    <div class="">
-    </div>
-    <div class="flex gap-4">
+  <div class="flex justify-between max-w-full hidden sm:block">
+    <div></div>
+    <div class="flex gap-4 justify-end">
       <div class="flex">
         <TagsInputRoot add-on-paste class="border rounded-lg bg-white p-1">
           <TagsInputInput placeholder="Search..." class="text-sm focus:outline-none flex-1 rounded text-green9 bg-transparent placeholder:text-mauve9 px-1" />

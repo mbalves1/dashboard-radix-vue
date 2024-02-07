@@ -7,9 +7,9 @@
         </div>
       </div>
     </div>
-    <div class="w-full grid grid-cols-3 gap-6">
-      <div class="col-span-2 bg-white rounded-lg">
-        <Form @submit="onSubmit" ref="refsForms">
+    <div class="w-full sm:grid sm:grid-cols-3 gap-6">
+      <div class="col-span-2 bg-white rounded-lg mb-6 sm:mb-0">
+        <!-- <Form @submit="onSubmit" ref="refsForms">
           <div class="flex flex-col">
             <label for="Nome">Nome</label>
             <Field name="Nome" id="Nome" type="text" :rules="isRequired" required class="border-2 outline-blue-500"></Field>
@@ -24,7 +24,9 @@
 
           <button type="submit" class="border p-6 bg-blue-100">Submit</button>
 
-        </Form>
+        </Form> -->
+
+        
       </div>
       <div class="col-span-1 bg-white rounded-lg">
         <div class="px-4 pt-4 text-lg">Cartões</div>

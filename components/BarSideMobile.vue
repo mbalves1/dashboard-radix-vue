@@ -1,25 +1,21 @@
 <template>
-  <div class="flex">
-    <img src="/nuxt.avif" alt="" class="w-12 mx-auto mt-4 cursor-pointer">
-
-    <Separator
-      class="bg-zinc-200 my-[15px] my-auto"
-      orientation="vertical"
-    />
-
-    <div class="flex mx-5 p-4 cursor-pointer rounded-xl items-center justify-between hover:bg-zinc-100 bg-zinc-50">
-      <LayoutDashboard />
+  <div class="flex items-center h-20">
+    <div class="">
+      <img src="/nuxt.avif" alt="" class="pl-2 w-12 mx-auto cursor-pointer">
     </div>
-
-    <div class="flex mx-5 p-4 cursor-pointer rounded-xl items-center justify-between hover:bg-zinc-100 bg-zinc-50">
-      <LayoutDashboard />
-    </div>
-    <div class="flex mx-5 p-4 cursor-pointer rounded-xl items-center justify-between hover:bg-zinc-100 bg-zinc-50">
-      <LayoutDashboard />
+    <div class="flex items-center justify-center mx-auto gap-6">
+      <LayoutDashboard class="text-green cursor-pointer bg-zinc-100 rounded w-12 h-12 p-3" />
+      <UserRound class="text-green cursor-pointer bg-zinc-100 rounded w-12 h-12 p-3" />
+      <PercentSquare class="text-green cursor-pointer bg-zinc-100 rounded w-12 h-12 p-3" />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { LayoutDashboard } from 'lucide-vue-next';
+import { LayoutDashboard, UserRound, PercentSquare, Bell } from 'lucide-vue-next';
 
+const currentMenu = ref('')
+
+function alede() {
+  alert('ol')
+}
 </script>
