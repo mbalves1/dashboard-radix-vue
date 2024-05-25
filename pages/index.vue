@@ -1,10 +1,10 @@
 <template>
-  <div class="grid lg:grid-cols-2 sm:h-screen dark">
-    <div v-if="register" class="bg-green-400"></div>
-    <div class="mx-auto my-auto">
+  <div class="grid lg:grid-cols-2 h-screen sm:mt-0">
+    <div v-if="register" class="bg-green-400 bg-[url('/img/credit.gif')] bg-no-repeat bg-center"></div>
+    <div class="mx-auto flex flex-col justify-center">
       <UserAccount @change-view-event="changePainel"></UserAccount>
     </div>
-    <div v-if="!register" class="bg-green-400"></div>
+    <div v-if="!register" class="sm:bg-green-400 sm:bg-[url('/img/credit.gif')] bg-no-repeat bg-center"></div>
   </div>
 </template>
 <script setup lang="ts">

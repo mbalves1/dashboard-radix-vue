@@ -38,8 +38,8 @@
       </div>
       <div class="grid gap-2">
         <Label for="password">Password</Label>
-        <div class="flex items-center m-1">
-          <Input id="password" :type="showPass ? 'password' : 'text'" v-model="form.password" />
+        <div class="flex items-center m-1 border rounded-lg pr-2 ">
+          <Input id="password" :type="showPass ? 'password' : 'text'" v-model="form.password" class="border-none focus:outline-none focus:ring focus:border-black-500"/>
           <Eye v-if="showPass" @click="showPass = !showPass" class="cursor-pointer"></Eye>
           <EyeOff v-else @click="showPass = !showPass" class="cursor-pointer"></EyeOff>
         </div>
@@ -49,10 +49,10 @@
       </div>
     </CardContent>
     <CardFooter class="flex flex-col gap-2">
-      <Button class="w-full bg-green-400 hover:bg-green-500" @click="signInWithEmailAndPass">
+      <Button class="w-full bg-green-400 hover:bg-green-500">
         LogIn
       </Button>
-      <Button class="w-full text-gray-600 hover:text-white bg-white hover:bg-green-400" @click="signInWithEmailAndPass">
+      <Button class="w-full text-gray-600 hover:text-white bg-white hover:bg-green-400">
         Quero fazer parte
       </Button>
     </CardFooter>
@@ -83,7 +83,7 @@
       <div class="grid gap-2">
         <Label for="password">Password</Label>
         <div class="flex items-center m-1">
-          <Input id="password" :type="showPass ? 'password' : 'text'" v-model="form.password" />
+          <Input id="password" :type="showPass ? 'password' : 'text'" v-model="form.password"/>
           <Eye v-if="showPass" @click="showPass = !showPass" class="cursor-pointer"></Eye>
           <EyeOff v-else @click="showPass = !showPass" class="cursor-pointer"></EyeOff>
         </div>
@@ -93,7 +93,7 @@
       </div>
     </CardContent>
     <CardFooter>
-      <Button class="w-full" @click="signInWithEmailAndPass">
+      <Button class="w-full">
         Create account
       </Button>
     </CardFooter>
