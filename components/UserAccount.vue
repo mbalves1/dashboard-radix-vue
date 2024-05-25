@@ -8,9 +8,10 @@
         Enter your email below to create your account
       </CardDescription>
     </CardHeader>
+    
     <CardContent class="grid gap-4">
       <div v-if="errorMessages" class="bg-red-200 text-red-500 rounded p-3 border-red-500 text-xs">{{ errorMessages }}</div>
-      <div>
+      <!-- <div>
         <Button class="w-full" variant="outline" @click="signInWithGoogle">
           <svg role="img" viewBox="0 0 24 24" class="mr-2 h-4 w-4">
             <path
@@ -20,8 +21,8 @@
           </svg>
           Google
         </Button>
-      </div>
-      <div class="relative">
+      </div> -->
+      <!-- <div class="relative">
         <div class="absolute inset-0 flex items-center">
           <span class="w-full border-t" />
         </div>
@@ -30,22 +31,29 @@
             Or continue with
           </span>
         </div>
-      </div>
+      </div> -->
       <div class="grid gap-2">
         <Label for="email">Email</Label>
         <Input id="email" type="email" placeholder="m@example.com" v-model="form.email" />
       </div>
       <div class="grid gap-2">
         <Label for="password">Password</Label>
-        <Input id="password" type="password" v-model="form.password" />
+        <div class="flex items-center m-1">
+          <Input id="password" :type="showPass ? 'password' : 'text'" v-model="form.password" />
+          <Eye v-if="showPass" @click="showPass = !showPass" class="cursor-pointer"></Eye>
+          <EyeOff v-else @click="showPass = !showPass" class="cursor-pointer"></EyeOff>
+        </div>
       </div>
-      <div class="flex justify-end cursor-pointer" @click="changeView">
-        <p class="text-xs underline">Criar conta</p>
+      <div class="flex justify-end">
+        <p class="text-xs underline cursor-pointer" @click="changeView">Esqueci minha senha</p>
       </div>
     </CardContent>
-    <CardFooter>
-      <Button class="w-full" @click="signInWithEmailAndPass">
+    <CardFooter class="flex flex-col gap-2">
+      <Button class="w-full bg-green-400 hover:bg-green-500" @click="signInWithEmailAndPass">
         LogIn
+      </Button>
+      <Button class="w-full text-gray-600 hover:text-white bg-white hover:bg-green-400" @click="signInWithEmailAndPass">
+        Quero fazer parte
       </Button>
     </CardFooter>
   </Card>
@@ -93,13 +101,13 @@
 </template>
 <script setup lang="ts">
 import { Eye, EyeOff } from 'lucide-vue-next';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  getAuth
-} from 'firebase/auth'
+// import {
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   GoogleAuthProvider,
+//   signInWithPopup,
+//   getAuth
+// } from 'firebase/auth'
 
 const createAccount = ref(true)
 const showPass = ref(true)
@@ -115,43 +123,43 @@ const emit = defineEmits(['changeViewEvent'])
 
 const errorMessages = ref()
 
-const {auth} = useFirebaseClient()
+// const {auth} = useFirebaseClient()
 
-function create() {
-  createUserWithEmailAndPassword(auth, form.value.email, form.value.password)
-    .then((user) => {
-      console.log(user.user?.accessToken)
-      navigateTo('/home')
-    })
-    .catch((e) => {
-      console.log(e);
-      navigateTo('/')
-    })
-}
+// function create() {
+//   createUserWithEmailAndPassword(auth, form.value.email, form.value.password)
+//     .then((user) => {
+//       console.log(user.user?.accessToken)
+//       navigateTo('/home')
+//     })
+//     .catch((e) => {
+//       console.log(e);
+//       navigateTo('/')
+//     })
+// }
 
-const signInWithEmailAndPass = () => {
-  signInWithEmailAndPassword(auth, form.value.email, form.value.password)
-  .then((user) => {
-      console.log(user.user?.accessToken)
-      navigateTo('/home')
-    })
-    .catch((e) => {
-      errorMessages.value = 'Crendenciais inválidas, tente novamente!'
-      navigateTo('/')
-    })
-}
+// const signInWithEmailAndPass = () => {
+//   signInWithEmailAndPassword(auth, form.value.email, form.value.password)
+//   .then((user) => {
+//       console.log(user.user?.accessToken)
+//       navigateTo('/home')
+//     })
+//     .catch((e) => {
+//       errorMessages.value = 'Crendenciais inválidas, tente novamente!'
+//       navigateTo('/')
+//     })
+// }
 
- const signInWithGoogle = () => {
-   const provider = new GoogleAuthProvider()
-   signInWithPopup(getAuth(), provider)
-    .then((result) => {
-      console.log(result.user)
-      navigateTo('/home')
-    })
-    .catch((error) => {
+//  const signInWithGoogle = () => {
+//    const provider = new GoogleAuthProvider()
+//    signInWithPopup(getAuth(), provider)
+//     .then((result) => {
+//       console.log(result.user)
+//       navigateTo('/home')
+//     })
+//     .catch((error) => {
 
-    })
- }
+//     })
+//  }
 
  const changeView = () => {
   emit('changeViewEvent', false)
