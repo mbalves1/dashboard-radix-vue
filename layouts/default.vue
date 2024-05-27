@@ -7,7 +7,7 @@
       <BarSide class="hidden sm:block sm:mr-0"></BarSide>
       <BarSideMobile class="sm:hidden rounded-3xl w-[200px] mx-auto bg-white"></BarSideMobile>
     </aside>
-    <main class="p-0 sm:p-6 w-full">
+    <main class="p-0 sm:pr-6 sm:pt-6 w-full">
       <HeaderView></HeaderView>
       <slot></slot>
     </main>
