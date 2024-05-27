@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col justify-between gap-6">
+    <div class="block"> \zsd</div>
     <div class="my-1 w-full  grid grid-cols-3">
       <div class="flex overflow-x-scroll scrollbar-custom gap-6 col-span-3">
         <div v-for="(month, mx) in array" :key="mx" class="min-w-[300px] h-80 p-6 bg-white rounded-xl">

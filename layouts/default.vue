@@ -1,11 +1,11 @@
 <template>
-  <div class="body w-screen h-[100vh] flex gap-6 mx-auto flex-col-reverse sm:flex-row">
+  <div class="body w-screen sm:h-[100vh] flex gap-6 mx-auto flex-col-reverse sm:flex-row">
     <aside
-      class="sm:h-full transition-width duration-500 ease-in-out h-[100px]"
+      class="sm:h-full transition-width duration-500 ease-in-out h-[100px] flex justify-center"
       :class="resize ? 'sm:w-[100px]' : 'sm:w-[300px] w-full'"
     >
-      <BarSide class="hidden sm:block"></BarSide>
-      <BarSideMobile class="sm:hidden rounded-3xl bg-white"></BarSideMobile>
+      <BarSide class="hidden sm:block sm:mr-0"></BarSide>
+      <BarSideMobile class="sm:hidden rounded-3xl w-[200px] mx-auto bg-white"></BarSideMobile>
     </aside>
     <main class="p-0 sm:p-6 w-full">
       <HeaderView></HeaderView>
@@ -27,7 +27,7 @@ watch(() => {
 <style>
 .body {
   width: 100% !important;
-  /* height: 100vh; */
+  height: 100vh;
   background: linear-gradient(
     to bottom,
     #2DCE89 0%,
