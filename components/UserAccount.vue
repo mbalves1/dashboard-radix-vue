@@ -1,12 +1,16 @@
 <template>
   <Card v-if="createAccount">
     <CardHeader class="space-y-1">
-      <CardTitle class="text-2xl">
-        Manager System
-      </CardTitle>
-      <CardDescription>
-        Enter your email below to create your account
-      </CardDescription>
+      <div class="custom">
+        <div class="animate one customFont">
+          <strong><i><span>m</span><span>i</span><span>n</span><span>n</span><span>e</span><span>.</span>
+            <span class="text-black">w</span><span class="text-black">a</span><span class="text-black">l</span><span class="text-black">l</span><span class="text-black">e</span><span class="text-black">t</span></i></strong>
+        </div>
+        <div class="text-sm px-10 flex justify-center flex-col mt-5">
+          <span class="text-align">Seu Guia para a Saúde Financeira</span>
+          <strong class="text-align" >Todas as Suas Contas, Um Único Lugar.</strong>
+        </div>
+      </div>
     </CardHeader>
     
     <CardContent class="grid gap-4">
@@ -45,14 +49,14 @@
         </div>
       </div>
       <div class="flex justify-end">
-        <p class="text-xs underline cursor-pointer" @click="changeView">Esqueci minha senha</p>
+        <p class="text-xs underline cursor-pointer">Esqueci minha senha</p>
       </div>
     </CardContent>
     <CardFooter class="flex flex-col gap-2">
       <Button class="w-full bg-green-400 hover:bg-green-500">
         LogIn
       </Button>
-      <Button class="w-full text-gray-600 hover:text-white bg-white hover:bg-green-400">
+      <Button @click="changeView" class="w-full text-gray-600 hover:text-white bg-white hover:bg-green-400">
         Quero fazer parte
       </Button>
     </CardFooter>
@@ -89,7 +93,7 @@
         </div>
       </div>
       <div class="flex justify-end cursor-pointer" @click="changeView">
-        <p class="text-xs underline">Create account</p>
+        <p class="text-xs underline">Voltar para login</p>
       </div>
     </CardContent>
     <CardFooter>
